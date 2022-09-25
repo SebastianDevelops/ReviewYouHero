@@ -15,7 +15,8 @@ namespace HeroReviewApp.Data
         public DbSet<Review> reviews {  get; set; }
         public DbSet<Reviewer> reviewers { get; set; }
         public DbSet<SuperPower> superPowers { get; set; }
-        
+        public DbSet<HeroWeaknesses> heroWeaknesses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<HeroCategory>()
