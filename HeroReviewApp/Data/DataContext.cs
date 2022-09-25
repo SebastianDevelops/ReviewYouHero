@@ -24,10 +24,12 @@ namespace HeroReviewApp.Data
 
             modelBuilder.Entity<PlanetsSavedByHero>()
                 .HasOne(h => h.Hero)
-                .WithMany(p => p.PlanetsSaved);
-
+                .WithMany(p => p.PlanetsSaved)
+                .HasForeignKey(k => k.HeroId);
             modelBuilder.Entity<PlanetsSavedByHero>()
-                .HasKey(pk => new { pk.HeroId, pk.PlanetId });
+                .HasOne(h => h.planetSaved)
+                .WithMany(p => p.PlanetsSavedByHero)
+                .HasForeignKey(k => k.PlanetId);
         }
     }
 }

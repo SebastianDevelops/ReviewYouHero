@@ -7,6 +7,6 @@
 
         public ICollection<Hero> Heros { get; set; }
 
-        ICollection<PlanetsSavedByHero> PlanetsSavedByHero { get; set; }
+        public ICollection<PlanetsSavedByHero> PlanetsSavedByHero { get; set; }
     }
 }
