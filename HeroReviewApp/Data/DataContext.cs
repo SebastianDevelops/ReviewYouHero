@@ -10,8 +10,8 @@ namespace HeroReviewApp.Data
         public DbSet<ComicUniverse> ComicUniverses { get; set; }
         public DbSet<Hero> Heros { get; set; }
         public DbSet<HeroCategory> HeroCategories {  get; set; }
-        public DbSet<PlanetOfHero> planetOfHeroes { get; set; }
-        public DbSet<PlanetOfOrigin> planetOfOrigins { get; set; }
+        public DbSet<PlanetsSavedByHero> planetOfHeroes { get; set; }
+        public DbSet<PlanetsSaved> planetOfOrigins { get; set; }
         public DbSet<Review> reviews {  get; set; }
         public DbSet<Reviewer> reviewers { get; set; }
         public DbSet<SuperPower> superPowers { get; set; }
@@ -19,8 +19,15 @@ namespace HeroReviewApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<HeroCategory>()
-                .HasKey(pk => new { pk.HeroId, pk.ComicUniverseId });
+            modelBuilder.Entity<PlanetsSavedByHero>()
+                .HasKey(pk => new { pk.HeroId, pk.PlanetId });
+
+            modelBuilder.Entity<PlanetsSavedByHero>()
+                .HasOne(h => h.Hero)
+                .WithMany(p => p.PlanetsSaved);
+
+            modelBuilder.Entity<PlanetsSavedByHero>()
+                .HasKey(pk => new { pk.HeroId, pk.PlanetId });
         }
     }
 }
